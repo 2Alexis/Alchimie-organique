@@ -1,0 +1,438 @@
+/* Styles pour la page Notre Approche */
+
+/* Bannière de page */
+.page-banner {
+    height: 40vh;
+    min-height: 300px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('assets/images/hand.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--light-color);
+    margin-top: 80px; /* Pour compenser le header fixe */
+    overflow: hidden; /* Pour contenir les animations */
+}
+
+.banner-content {
+    max-width: 800px;
+    padding: 0 1rem;
+}
+
+.banner-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    animation: fadeInUp 1s ease-out;
+}
+
+.banner-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Conteneur commun */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Section Philosophie */
+.philosophy {
+    padding: 5rem 0;
+    background-color: var(--dark-color);
+}
+
+.philosophy .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3rem;
+}
+
+.philosophy-content {
+    flex: 1 1 500px;
+}
+
+.philosophy-content h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.philosophy-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.philosophy-image {
+    flex: 1 1 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.philosophy-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.philosophy-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Section Principes */
+.principles {
+    padding: 5rem 5%;
+    background-color: var(--background-color);
+    text-align: center;
+}
+
+.principles h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.principle-card {
+    background-color: var(--dark-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.principle-card:hover {
+    transform: translateY(-10px);
+}
+
+.principle-icon {
+    margin-bottom: 1.5rem;
+}
+
+.principle-icon img {
+    width: 60px;
+    height: 60px;
+}
+
+.principle-card h4 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.principle-card p {
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* Section Fondatrice */
+.founder {
+    padding: 5rem 0;
+    background-color: var(--dark-color);
+}
+
+.founder .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3rem;
+}
+
+.founder-image {
+    flex: 1 1 350px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.founder-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.founder-content {
+    flex: 1 1 550px;
+}
+
+.founder-content h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.founder-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+.founder-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.founder-quote {
+    font-style: italic;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--primary-color);
+}
+
+/* Section Parcours */
+.journey {
+    padding: 5rem 5%;
+    background-color: var(--background-color);
+    text-align: center;
+}
+
+.journey h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.journey-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.journey-step {
+    flex: 1 1 220px;
+    max-width: 280px;
+    position: relative;
+    padding: 2rem;
+    background-color: var(--dark-color);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.journey-step:hover {
+    transform: translateY(-10px);
+}
+
+.step-number {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent-color);
+    color: var(--light-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.journey-step h4 {
+    color: var(--secondary-color);
+    margin: 1rem 0;
+    font-size: 1.3rem;
+}
+
+.journey-step p {
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* Témoignages étendus */
+.testimonials-extended {
+    padding: 5rem 5%;
+    background-color: var(--dark-color);
+    text-align: center;
+}
+
+.testimonials-extended h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial-card {
+    background-color: var(--background-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: left;
+    position: relative;
+}
+
+.testimonial-card:before {
+    content: '"';
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    font-size: 4rem;
+    font-family: 'Playfair Display', serif;
+    color: rgba(147, 112, 219, 0.2);
+    line-height: 1;
+}
+
+.testimonial-card p {
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    color: var(--text-color);
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-author .name {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.testimonial-author .occupation {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+* CTA section */
+.cta {
+    position: relative;
+    padding: 6rem 0;
+    text-align: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/star.jpg');
+    background-position: center 60%; /* Ajustement de la position verticale */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--light-color);
+    overflow: hidden;
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(147, 112, 219, 0.2), transparent 70%);
+    opacity: 0.7;
+    animation: pulse 8s infinite alternate;
+}
+
+.cta h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.cta p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.cta .btn {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50px;
+    transition: all 0.4s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cta .btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .banner-content h2 {
+        font-size: 2.2rem;
+    }
+    
+    .philosophy .container,
+    .founder .container {
+        flex-direction: column;
+    }
+    
+    .founder .container {
+        flex-direction: column-reverse;
+    }
+    
+    .philosophy-content,
+    .founder-content {
+        text-align: center;
+    }
+    
+    .founder-quote {
+        text-align: left;
+    }
+    
+    .journey-step {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+} 

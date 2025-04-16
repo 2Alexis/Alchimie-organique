@@ -1,0 +1,390 @@
+/* Styles pour la page des services */
+
+/* Bannière de page */
+.page-banner {
+    position: relative;
+    overflow: hidden;
+    height: 40vh;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--light-color);
+    margin-top: 80px; /* Pour compenser le header fixe */
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 0 1rem;
+}
+
+.banner-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: 'Playfair Display', serif;
+    animation: fadeInUp 1s ease-out;
+}
+
+.banner-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.8;
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+    }
+    to { 
+        opacity: 1; 
+    }
+}
+
+/* Introduction aux services */
+.services-intro {
+    padding: 5rem 5%;
+    background-color: var(--dark-color);
+    text-align: center;
+}
+
+.intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.intro-content h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.intro-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+/* Grille des services */
+.services-grid {
+    padding: 2rem 5% 5rem;
+    background-color: var(--background-color);
+}
+
+.service-card {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+    background-color: var(--dark-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card.reverse {
+    flex-direction: row-reverse;
+}
+
+.service-image {
+    flex: 1 1 300px;
+    min-height: 350px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.service-image img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border-radius: 5px;
+}
+
+.service-card:hover .service-image img {
+    transform: scale(1.03);
+}
+
+.service-content {
+    flex: 1 1 400px;
+    padding: 2.5rem;
+}
+
+.service-content h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.service-duration, .service-price {
+    display: inline-block;
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.service-price {
+    color: var(--secondary-color);
+}
+
+.service-description {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.service-benefits {
+    background-color: rgba(147, 112, 219, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.service-benefits h4 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.service-benefits ul {
+    padding-left: 1.5rem;
+}
+
+.service-benefits ul li {
+    list-style-type: disc;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+/* Forfaits */
+.packages {
+    padding: 5rem 5%;
+    background-color: var(--dark-color);
+    text-align: center;
+}
+
+.packages h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.package-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.package-card {
+    flex: 1 1 300px;
+    max-width: 350px;
+    background-color: var(--background-color);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.package-card:hover {
+    transform: translateY(-10px);
+}
+
+.package-card.featured {
+    border: 2px solid var(--accent-color);
+    transform: scale(1.05);
+}
+
+.package-card.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+.featured-label {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-color);
+    color: var(--light-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.package-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.package-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+.package-description {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.package-includes {
+    text-align: left;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+}
+
+.package-includes li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    list-style-type: none;
+    color: var(--text-color);
+}
+
+.package-includes li::before {
+    content: "✓";
+    color: var(--primary-color);
+    position: absolute;
+    left: -1.5rem;
+    font-weight: bold;
+}
+
+* CTA section */
+.cta {
+    position: relative;
+    padding: 6rem 0;
+    text-align: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('assets/images/star.jpg');
+    background-position: center 60%; /* Ajustement de la position verticale */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--light-color);
+    overflow: hidden;
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(147, 112, 219, 0.2), transparent 70%);
+    opacity: 0.7;
+    animation: pulse 8s infinite alternate;
+}
+
+.cta h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.cta p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.cta .btn {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50px;
+    transition: all 0.4s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cta .btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .banner-content h2 {
+        font-size: 2.2rem;
+    }
+    
+    .banner-content p {
+        font-size: 1.1rem;
+    }
+    
+    .service-card, .service-card.reverse {
+        flex-direction: column;
+    }
+    
+    .service-image {
+        min-height: 250px;
+        max-height: 400px;
+    }
+    
+    .service-image img {
+        max-height: 380px;
+    }
+    
+    .package-card.featured {
+        transform: scale(1);
+    }
+    
+    .package-card.featured:hover {
+        transform: translateY(-10px);
+    }
+} 

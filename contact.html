@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Alchimie Organique</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact.css?v=1.1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+           <a href="index.html"> <img src="assets/images/logo.png" alt="Logo Alchimie Organique" class="logo-image"></a>
+            <h1>Alchimie Organique</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="services.html">Nos Soins</a></li>
+                <li><a href="reservation-iframe-site.html">Réservations</a></li>
+                <li><a href="about.html">Notre Approche</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <div class="banner-content">
+            <h2>Contactez-Nous</h2>
+            <p>Nous sommes à votre écoute pour toute question ou demande d'information</p>
+        </div>
+    </section>
+
+    <section class="contact-intro">
+        <div class="container">
+            <h3>Comment Pouvons-Nous Vous Aider?</h3>
+            <p>Que vous souhaitiez en savoir plus sur nos services, réserver une consultation personnalisée ou simplement nous faire part de vos questions, notre équipe est là pour vous accompagner dans votre démarche de bien-être et de transformation.</p>
+        </div>
+    </section>
+
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-form-container">
+                <h3>Envoyez-Nous un Message</h3>
+                <form id="contact-form" class="contact-form" action="https://formspree.io/f/mrbpverb" method="POST">
+               
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user-circle"></i> Nom complet *</label>
+                        <input type="text" id="name" name="name" placeholder="Votre nom et prénom" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email *</label>
+                        <input type="email" id="email" name="email" placeholder="votre.email@exemple.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone"><i class="fas fa-phone"></i> Téléphone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Ex: 06 12 34 56 78">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inquiry_type"><i class="fas fa-tag"></i> Sujet *</label>
+                        <select id="inquiry_type" name="inquiry_type" required>
+                            <option value="" disabled selected>Sélectionnez un sujet</option>
+                            <option value="Demande d'informations">Demande d'informations</option>
+                            <option value="Prise de rendez-vous">Prise de rendez-vous</option>
+                            <option value="Proposition de partenariat">Proposition de partenariat</option>
+                            <option value="Autre demande">Autre demande</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message"><i class="fas fa-comment-alt"></i> Votre message *</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Écrivez votre message ici..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy">J'accepte que mes données soient traitées conformément à la <a href="#" class="privacy-link">politique de confidentialité</a></label>
+                    </div>
+                    
+                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Envoyer le message</button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Adresse</h4>
+                        <p class="primary-text">Allée d'Oxford</p>
+                        <p class="secondary-text">13100 Aix-en-Provence<br>France</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Téléphone</h4>
+                        <p class="primary-text">+33 (0)6 59 79 48 72</p>
+                        <p class="secondary-text">Du lundi au vendredi : 9h-18h</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Email</h4>
+                        <p class="primary-text">majkakeuni@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Réseaux Sociaux</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/majkakeuni?igsh=MXRmbm4xdm84NTg2ZQ==/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.tiktok.com/@majka.k.n" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="container">
+            <h3>Nous Trouver</h3>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2893.163790675642!2d5.457442575649735!3d43.519777061050824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c98dec54632d63%3A0xb36dac1a370248c5!2sAll.%20d&#39;Oxford%2C%2013100%20Aix-en-Provence!5e0!3m2!1sfr!2sfr!4v1744705902084!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="hours-section">
+        <div class="container">
+            <div class="hours-content">
+                <h3>Horaires d'Ouverture</h3>
+                <ul class="hours-list">
+                    <li>
+                        <span class="day">Lundi - Vendredi</span>
+                        <span class="time">9h00 - 20h00</span>
+                    </li>
+                    <li>
+                        <span class="day">Samedi</span>
+                        <span class="time">10h00 - 18h00</span>
+                    </li>
+                    <li>
+                        <span class="day">Dimanche</span>
+                        <span class="time">Fermé</span>
+                    </li>
+                </ul>
+                <p class="note">Consultations sur rendez-vous uniquement</p>
+            </div>
+            <div class="hours-image">
+                <img src="assets/images/apotheose.jpg" alt="Notre espace d'accueil">
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h3>Questions Fréquentes</h3>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>Comment prendre rendez-vous ?</h4>
+                    <p>Vous pouvez réserver directement en ligne via notre page de réservation, par téléphone ou par email. Nous vous confirmerons votre rendez-vous dans les plus brefs délais.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Quelle est votre politique d'annulation ?</h4>
+                    <p>Nous acceptons les annulations jusqu'à 24h avant l'heure prévue du rendez-vous. Toute annulation tardive ou absence sera facturée à 50% du prix de la séance.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Faut-il une préparation particulière avant une séance ?</h4>
+                    <p>Nous recommandons de venir dans une tenue confortable, d'éviter les repas lourds et l'alcool avant votre séance, et d'arriver 15 minutes avant l'heure prévue pour vous installer sereinement.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Proposez-vous des forfaits ou cartes de fidélité ?</h4>
+                    <p>Oui, nous proposons plusieurs forfaits adaptés à différents besoins et objectifs. Consultez notre page des services pour plus d'informations sur nos offres spéciales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Prêt à Commencer Votre Voyage Intérieur?</h2>
+        <p>Offrez-vous un moment de reconnexion et de transformation</p>
+        <a href="reservation-iframe-site.html" class="btn">Réserver Votre Séance</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Alchimie Organique</h3>
+                <p>Votre sanctuaire de bien-être holistique</p>
+            </div>
+            <div class="footer-links">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="services.html">Nos Soins</a></li>
+                    <li><a href="reservation-iframe-site.html">Réservations</a></li>
+                    <li><a href="about.html">Notre Approche</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>Email : majkakeuni@gmail.com</p>
+                <p>Téléphone : +33 (0)6 59 79 48 72</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/majkakeuni?igsh=MXRmbm4xdm84NTg2ZQ==/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@majka.k.n" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Alchimie Organique. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script src="contact.js"></script>
+
+    <style>
+    /* Style pour le logo */
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo-image {
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    </style>
+</body>
+</html> 

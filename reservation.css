@@ -1,0 +1,741 @@
+/* Styles spécifiques à la page de réservation */
+
+/* Bannière de page */
+.page-banner {
+    height: 40vh;
+    min-height: 300px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/reservation.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--light-color);
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(147, 112, 219, 0.2), transparent 70%);
+    animation: pulse 8s infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+.banner-content {
+    max-width: 800px;
+    padding: 0 1rem;
+}
+
+.banner-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    animation: fadeInUp 1s ease-out;
+}
+
+.banner-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+    }
+    to { 
+        opacity: 1; 
+    }
+}
+
+
+
+/* Container de réservation */
+.reservation-container {
+    padding: 5rem 5%;
+    background-color: var(--background-color);
+    position: relative;
+}
+
+.reservation-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(147, 112, 219, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.reservation-intro {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.reservation-intro h3 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Playfair Display', serif;
+}
+
+.reservation-intro p {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.reservation-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+/* Calendrier */
+.calendar-container {
+    flex: 1 1 600px;
+    max-width: 800px;
+    background-color: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+#calendar {
+    height: 600px;
+}
+
+/* Style personnalisé pour FullCalendar */
+.fc-theme-standard th {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+.fc-theme-standard td {
+    border-color: rgba(147, 112, 219, 0.3);
+}
+
+.fc-daygrid-day.fc-day-today {
+    background-color: rgba(147, 112, 219, 0.2);
+}
+
+.fc-button-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.fc-event {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.fc-event:hover {
+    background-color: var(--primary-color);
+}
+
+/* Formulaire de réservation */
+.booking-form {
+    flex: 1 1 400px;
+    max-width: 500px;
+    background-color: var(--dark-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.booking-form h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.selected-datetime {
+    background-color: rgba(147, 112, 219, 0.2);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--primary-color);
+    color: var(--text-color);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(147, 112, 219, 0.2);
+}
+
+/* Information supplémentaire */
+.reservation-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 5rem 5%;
+    background-color: var(--background-color);
+    position: relative;
+    z-index: 1;
+}
+
+.info-card {
+    background-color: var(--dark-color);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    opacity: 0.8;
+}
+
+.info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(147, 112, 219, 0.2);
+}
+
+.icon-container {
+    margin-bottom: 1.5rem;
+}
+
+.icon-container i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover .icon-container i {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.info-card h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.info-card p {
+    color: var(--text-color);
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+/* Animation de lumière au survol */
+.info-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    transform: scale(0.5);
+}
+
+.info-card:hover::after {
+    opacity: 0.5;
+    transform: scale(1);
+}
+
+/* Animation */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.booking-form.active {
+    display: block !important;
+    animation: slideInRight 0.5s ease forwards;
+}
+
+/* Styles pour le sélecteur d'heure */
+.time-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #444;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Styles pour les notifications et modales */
+.notification {
+    background-color: var(--primary-color);
+}
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal {
+    background-color: var(--dark-color);
+    color: var(--text-color);
+}
+
+.confirmation-details {
+    color: var(--primary-color);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .banner-content h2 {
+        font-size: 2.2rem;
+    }
+    
+    .reservation-flex {
+        flex-direction: column;
+    }
+    
+    #calendar {
+        height: 500px;
+    }
+    
+    .iframe-container {
+        padding: 15px;
+        margin: 0 10px;
+    }
+    
+    .iframe-container iframe {
+        min-height: 700px;
+    }
+    
+    .info-card {
+        padding: 2rem;
+    }
+    
+    .reservation-intro h3 {
+        font-size: 1.8rem;
+    }
+    
+    .icon-container i {
+        font-size: 2rem;
+    }
+}
+
+/* Styles pour l'iframe */
+.iframe-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    border: 1px solid rgba(147, 112, 219, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.iframe-container iframe {
+    width: 100%;
+    min-height: 750px;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    transition: transform 0.3s ease;
+    filter: brightness(1.2) contrast(1.1);
+}
+
+.iframe-container:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 15px rgba(147, 112, 219, 0.3);
+    transform: translateY(-5px);
+}
+
+.iframe-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    z-index: 1;
+    border-radius: 15px 15px 0 0;
+}
+
+.iframe-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(147, 112, 219, 0.3), transparent);
+}
+
+* CTA section */
+.cta {
+    position: relative;
+    padding: 6rem 0;
+    text-align: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('assets/images/star.jpg');
+    background-position: center 60%; /* Ajustement de la position verticale */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--light-color);
+    overflow: hidden;
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(147, 112, 219, 0.2), transparent 70%);
+    opacity: 0.7;
+    animation: pulse 8s infinite alternate;
+}
+
+.cta h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.cta p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.cta .btn {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50px;
+    transition: all 0.4s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cta .btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Styles pour la section de contact pour les réservations */
+.contact-for-booking {
+    max-width: 800px;
+    margin: 3rem auto 0;
+    padding: 2rem;
+    background-color: var(--dark-color);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.contact-for-booking h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-method i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.contact-method p {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.booking-note {
+    font-style: italic;
+    color: var(--text-color);
+    margin-top: 1rem;
+}
+
+/* Styles pour les étapes de réservation */
+.reservation-steps {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem auto 2rem;
+    max-width: 1000px;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(147, 112, 219, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 10px rgba(147, 112, 219, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.step::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(147, 112, 219, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.step:hover::after {
+    opacity: 1;
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.step:hover .step-number {
+    transform: scale(1.1) rotate(10deg);
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.step-content p {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* Animation d'entrée pour les étapes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.step:nth-child(1) {
+    animation: fadeInUp 0.5s 0.1s ease forwards;
+}
+
+.step:nth-child(2) {
+    animation: fadeInUp 0.5s 0.3s ease forwards;
+}
+
+.step:nth-child(3) {
+    animation: fadeInUp 0.5s 0.5s ease forwards;
+}
+
+/* Responsive pour les étapes */
+@media screen and (max-width: 992px) {
+    .reservation-steps {
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 600px;
+    }
+    
+    .step {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .step {
+        padding: 1.2rem;
+    }
+    
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .step-content h4 {
+        font-size: 1.1rem;
+    }
+    
+    .step-content p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Styles pour le message informatif */
+.calendar-notice {
+    background-color: rgba(166, 77, 255, 0.1);
+    border-left: 4px solid var(--primary-color);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.notice-icon {
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.notice-icon i {
+    font-size: 24px;
+    color: var(--primary-color);
+}
+
+.calendar-notice p {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+@media screen and (max-width: 768px) {
+    .calendar-notice {
+        flex-direction: column;
+        text-align: center;
+        padding: 12px;
+    }
+    
+    .notice-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+} 
