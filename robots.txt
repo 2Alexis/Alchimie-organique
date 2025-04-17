@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://alchimieorganiquemajkakeuni.com/sitemap.xml
+
+# Optimisé pour le référencement
+# Alchimie Organique - Soins Holistiques à Aix-en-Provence 
