@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservations - Alchimie Organique</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="reservation.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Firebase SDK -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+      import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAmUSeKTTGGHUtGZMoo1fuonFSnJF0gqz8",
+        authDomain: "alchimie-organique.firebaseapp.com",
+        projectId: "alchimie-organique",
+        storageBucket: "alchimie-organique.firebasestorage.app",
+        messagingSenderId: "835502034140",
+        appId: "1:835502034140:web:bcfedb73cc4d990ffdf819",
+        measurementId: "G-FNYCRLVQLT"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Mettre auth à disposition globalement ou via un objet window pour le script inline
+      window.firebaseAuth = { auth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink };
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+           <a href="index.html"> <img src="assets/images/logo.png" alt="Logo Alchimie Organique" class="logo-image"></a>
+            <h1>Alchimie Organique</h1>
+        </div>
+        <!-- Bouton Burger -->
+        <button class="burger-menu" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="burger-bar"></span>
+            <span class="burger-bar"></span>
+            <span class="burger-bar"></span>
+        </button>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="services.html">Nos Soins</a></li>
+                <li><a href="reservation.html" class="active">Réservations</a></li>
+                <li><a href="about.html">Notre Approche</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <div class="banner-content">
+            <h2>Réservez Votre Séance</h2>
+            <p>Sélectionnez la date et l'heure qui vous conviennent</p>
+        </div>
+    </section>
+
+    <section class="reservation-container">
+        <div class="reservation-intro">
+            <h3>Choisissez votre moment de reconnexion</h3>
+            <p>Notre calendrier vous permet de réserver directement votre séance de soins par alchimie organique. Pour accéder au calendrier, veuillez d'abord vérifier votre adresse email en utilisant le formulaire ci-dessous. Le paiement aura lieu au moment du soin, en espèce ou par virement.</p>
+        </div>
+        
+        <!-- Formulaire de vérification d'email simplifié -->
+        <div id="email-verification-container" class="verification-form-container">
+            <div class="verification-form">
+                <h3>Vérification de l'adresse email</h3>
+                <p>Entrez votre adresse email pour recevoir un lien de connexion sécurisé qui vous donnera accès au calendrier.</p>
+                
+                <div id="email-input-step">
+                    <div class="form-group">
+                        <label for="email-input">Adresse email</label>
+                        <div class="email-input-wrapper">
+                            <input type="email" id="email-input" placeholder="votre@email.com" required>
+                        </div>
+                    </div>
+                    <button id="send-link-btn" class="action-btn primary-btn">Envoyer le lien de connexion</button>
+                </div>
+                
+                <div id="email-sent-message" style="display: none; margin-top: 1.5rem;">
+                    <p style="color: #4caf50;"><i class="fas fa-check-circle"></i> Un lien de connexion a été envoyé à <strong id="sent-email-address"></strong>.</p>
+                    <p>Veuillez cliquer sur ce lien dans votre boîte de réception pour accéder au calendrier.</p>
+                     <p><small>(Si vous ne le voyez pas, vérifiez votre dossier spam.)</small></p>
+                </div>
+                 <div id="error-message" class="error-message" style="display: none; color: #ff6b6b; margin-top: 1rem;"></div>
+            </div>
+        </div>
+        
+        <!-- Calendrier (initialement caché) -->
+        <div id="calendar-container" class="iframe-container" style="display: none;">
+            <div class="calendar-title">
+                <h3>Calendrier de Réservation</h3>
+                <p>Les horaires en blanc sont disponibles pour réservation.</p>
+            </div>
+            
+            <!-- Page de rendez-vous Google Calendar avec paramètres d'affichage améliorés -->
+            <iframe id="booking-calendar" src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Ay7Io1uOmh3Q6OdokoaczEzvPlteEJdYosR8vZOuvr3fXPLV19bNuKm4dKwQp3hXuViAWjMvY?gv=true" style="border: 0;" width="100%" height="820" frameborder="0"></iframe>
+        </div>
+    </section>
+
+    <section class="reservation-info">
+        <div class="info-card">
+            <div class="icon-container">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+            </div>
+            <h3>Politique d'annulation</h3>
+            <p>Annulation gratuite jusqu'à 24h avant le rendez-vous. Toute annulation tardive ou absence sera facturée à 50% du prix de la séance.</p>
+        </div>
+        <div class="info-card">
+            <div class="icon-container">
+                <i class="fas fa-spa" aria-hidden="true"></i>
+            </div>
+            <h3>Préparation</h3>
+            <p>Pour profiter pleinement de votre séance, nous vous recommandons d'arriver 15 minutes avant l'heure prévue et de porter des vêtements confortables.</p>
+        </div>
+        <div class="info-card">
+            <div class="icon-container">
+                <i class="fas fa-question-circle" aria-hidden="true"></i>
+            </div>
+            <h3>Questions?</h3>
+            <p>N'hésitez pas à nous contacter par téléphone ou par email pour toute question concernant nos séances ou vos réservations.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Alchimie Organique</h3>
+                <p>Votre sanctuaire de bien-être holistique</p>
+            </div>
+            <div class="footer-links">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="services.html">Nos Soins</a></li>
+                    <li><a href="reservation.html">Réservations</a></li>
+                    <li><a href="about.html">Notre Approche</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>Email : majkakeuni@gmail.com</p>
+                <p>Téléphone : +33 (0)6 59 79 48 72</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/majkakeuni?igsh=MXRmbm4xdm84NTg2ZQ==/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@majka.k.n" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Alchimie Organique. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Script principal pour la logique de réservation et Firebase -->
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Récupérer les fonctions Firebase depuis l'objet window
+            const { auth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } = window.firebaseAuth;
+            
+            // Éléments DOM
+            const emailVerificationContainer = document.getElementById('email-verification-container');
+            const emailInput = document.getElementById('email-input');
+            const sendLinkBtn = document.getElementById('send-link-btn');
+            const emailSentMessage = document.getElementById('email-sent-message');
+            const sentEmailAddress = document.getElementById('sent-email-address');
+            const errorMessage = document.getElementById('error-message');
+            const calendarContainer = document.getElementById('calendar-container');
+            
+            // Configuration pour le lien d'email
+            const actionCodeSettings = {
+                // URL à laquelle rediriger après avoir cliqué sur le lien.
+                // Le domaine doit être autorisé dans la console Firebase !
+                url: window.location.href, // Revient à la page actuelle
+                handleCodeInApp: true // Important pour gérer le lien dans l'app
+            };
+
+            // Afficher un message d'erreur
+            function displayError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+            }
+
+            // Cacher le message d'erreur
+            function hideError() {
+                 errorMessage.textContent = '';
+                 errorMessage.style.display = 'none';
+            }
+
+            // Afficher le calendrier et cacher la vérification
+            function showCalendar() {
+                emailVerificationContainer.style.display = 'none';
+                calendarContainer.style.display = 'block';
+                // Optionnel: Scroll vers le calendrier
+                calendarContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // --- Logique au chargement de la page ---
+            
+            // 1. Vérifier si l'utilisateur arrive via un lien de connexion
+            if (isSignInWithEmailLink(auth, window.location.href)) {
+                // Récupérer l'email stocké localement
+                let email = window.localStorage.getItem('emailForSignIn');
+                if (!email) {
+                    // L'utilisateur a ouvert le lien sur un autre appareil ou le stockage local a été vidé.
+                    // Demander l'email à nouveau (ou gérer l'erreur).
+                    // Pour simplifier, on affiche une erreur.
+                    displayError("Erreur : Email non trouvé pour la vérification. Veuillez réessayer d'entrer votre email.");
+                    // On pourrait aussi afficher un prompt: email = window.prompt('Veuillez entrer votre email pour la vérification');
+                } else {
+                    // Tenter de connecter l'utilisateur avec le lien
+                    try {
+                        await signInWithEmailLink(auth, email, window.location.href);
+                        // Succès ! L'utilisateur est connecté et vérifié.
+                        window.localStorage.removeItem('emailForSignIn'); // Nettoyer l'email stocké
+                        showCalendar();
+                        // Afficher une petite notification de succès ? (optionnel)
+                    } catch (error) {
+                        console.error("Erreur lors de la connexion avec le lien email:", error);
+                        displayError(`Impossible de vérifier le lien. Il est peut-être expiré ou invalide. (${error.code})`);
+                        window.localStorage.removeItem('emailForSignIn'); // Nettoyer même en cas d'erreur
+                    }
+                }
+            } else {
+                // 2. Si l'utilisateur n'arrive pas via un lien, vérifier s'il est déjà connecté (Firebase garde l'état)
+                 // et si son email est vérifié (pour la connexion par lien, c'est implicite)
+                 // Note: la vérification de l'état peut être plus complexe si on utilise d'autres méthodes
+                 // Pour la connexion par lien, si isSignInWithEmailLink est faux, on affiche le formulaire.
+                 console.log("Pas de lien de connexion détecté ou utilisateur non connecté/vérifié.");
+                 // Le formulaire de vérification reste visible par défaut.
+            }
+
+            // --- Logique du bouton "Envoyer le lien" ---
+            sendLinkBtn.addEventListener('click', async () => {
+                const email = emailInput.value.trim();
+                hideError(); // Cacher les anciens messages d'erreur
+
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    displayError('Veuillez entrer une adresse email valide.');
+                    return;
+                }
+
+                // Désactiver bouton et montrer chargement
+                sendLinkBtn.disabled = true;
+                sendLinkBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+
+                try {
+                    await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+                    // L'email a été envoyé. Stocker l'email localement pour quand l'utilisateur reviendra.
+                    window.localStorage.setItem('emailForSignIn', email);
+                    
+                    // Afficher le message de succès
+                    sentEmailAddress.textContent = email;
+                    emailSentMessage.style.display = 'block';
+                    emailInput.disabled = true; // Optionnel: désactiver le champ email
+                    sendLinkBtn.style.display = 'none'; // Cacher le bouton après envoi
+
+                } catch (error) {
+                    console.error("Erreur lors de l'envoi du lien email:", error);
+                    displayError(`Erreur lors de l'envoi de l'email. Veuillez réessayer. (${error.code})`);
+                    // Réactiver le bouton en cas d'erreur
+                    sendLinkBtn.disabled = false;
+                    sendLinkBtn.innerHTML = 'Envoyer le lien de connexion';
+                }
+            });
+        });
+    </script>
+
+    <style>
+    /* Styles pour le formulaire de vérification par email */
+    .verification-form-container {
+        max-width: 600px;
+        margin: 0 auto 3rem;
+    }
+    
+    .verification-form {
+        background: linear-gradient(135deg, rgba(30, 30, 40, 0.95), rgba(40, 30, 60, 0.95));
+        border-radius: 15px;
+        padding: 2.5rem;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        border: 1px solid rgba(147, 112, 219, 0.3);
+        position: relative;
+    }
+    
+    .verification-form::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #9370DB, #a64dff);
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .verification-form h3 {
+        color: #9370DB;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        font-family: 'Playfair Display', serif;
+    }
+    
+    .verification-form p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.95rem;
+    }
+    
+    .form-group small {
+        display: block;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+    }
+    
+    .email-input-wrapper {
+        display: flex;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(147, 112, 219, 0.4);
+    }
+    
+    #email-input {
+        flex: 1;
+        padding: 0.8rem;
+        border: none;
+        font-size: 1rem;
+        outline: none;
+        width: 100%;
+    }
+    
+    .text-btn {
+        background: none;
+        border: none;
+        color: rgba(147, 112, 219, 0.8);
+        text-decoration: underline;
+        cursor: pointer;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .text-btn:hover {
+        color: #9370DB;
+    }
+    
+    /* Styles pour le calendrier avec une meilleure intégration */
+    #booking-calendar {
+        filter: brightness(1.1) saturate(1.2) !important;
+        background-color: white !important;
+        border-radius: 10px !important;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2) !important;
+    }
+    
+    /* Styles pour le titre du calendrier */
+    .calendar-title {
+        text-align: center;
+        margin-bottom: 15px;
+        position: relative;
+        padding-bottom: 15px;
+    }
+    
+    .calendar-title h3 {
+        color: white;
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+        font-family: 'Playfair Display', serif;
+        letter-spacing: 0.5px;
+    }
+    
+    .calendar-title p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        font-style: italic;
+    }
+    
+    .calendar-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    }
+    
+    /* Styles pour le conteneur du calendrier */
+    .iframe-container {
+        background: linear-gradient(135deg, rgba(30, 30, 40, 0.95), rgba(40, 30, 60, 0.95)) !important;
+        border-radius: 15px !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+        overflow: hidden !important;
+        max-width: 1100px !important;
+        margin: 0 auto !important;
+        padding: 20px !important;
+        border: 1px solid rgba(147, 112, 219, 0.3) !important;
+        position: relative !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .iframe-container:hover {
+        transform: translateY(-5px) !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 15px rgba(147, 112, 219, 0.2) !important;
+    }
+
+    .iframe-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #9370DB, #a64dff, #7e57c2);
+        z-index: 10;
+    }
+    
+    .iframe-container::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(147, 112, 219, 0.05), transparent 70%);
+        pointer-events: none;
+        opacity: 0.5;
+        z-index: -1;
+    }
+
+    .iframe-container iframe {
+        width: 100% !important;
+        min-height: 850px !important;
+        border-radius: 8px !important;
+        margin-top: 10px !important;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Personnalisation du texte d'introduction */
+    .reservation-intro {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .reservation-intro h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+    }
+
+    .reservation-intro p {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text-color);
+    }
+
+    /* Amélioration des cartes d'info */
+    .reservation-info {
+        margin-top: 3rem;
+    }
+
+    .info-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .info-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Style pour le logo */
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo-image {
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    </style>
+</body>
+</html> 
