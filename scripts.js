@@ -98,35 +98,80 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Ajouter un bouton "retour en haut"
-    addBackToTopButton();
-    
-    function addBackToTopButton() {
-        const button = document.createElement('a');
-        button.href = '#';
-        button.className = 'back-to-top';
-        button.innerHTML = '↑';
-        button.setAttribute('aria-label', 'Retour en haut');
-        
-        // Ajouter au DOM
-        document.body.appendChild(button);
-        
-        // Gérer la visibilité
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 500) {
-                button.classList.add('visible');
+    // Gestion du menu burger
+    const burgerMenu = document.querySelector('.burger-menu');
+    const mobileNav = document.querySelector('nav.mobile-nav'); // Cibler la nav principale
+
+    if (burgerMenu && mobileNav) {
+        burgerMenu.addEventListener('click', function() {
+            // Basculer l'état actif du bouton burger
+            burgerMenu.classList.toggle('active');
+            // Basculer l'état actif du menu mobile
+            mobileNav.classList.toggle('active');
+            
+            // Mettre à jour l'attribut aria-expanded pour l'accessibilité
+            const isExpanded = burgerMenu.getAttribute('aria-expanded') === 'true';
+            burgerMenu.setAttribute('aria-expanded', !isExpanded);
+
+            // Optionnel : Bloquer le scroll du body quand le menu est ouvert
+            if (mobileNav.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
             } else {
-                button.classList.remove('visible');
+                document.body.style.overflow = '';
             }
         });
-        
-        // Gérer le clic
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+
+        // Optionnel : Fermer le menu si on clique sur un lien
+        const navLinks = mobileNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileNav.classList.contains('active')) {
+                    burgerMenu.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                    burgerMenu.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = ''; 
+                }
             });
         });
+    }
+    
+    // Animation des éléments au défilement (code existant)
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => {
+        observer.observe(el);
+    });
+    
+    // Bouton retour en haut (code existant)
+    const backToTopButton = document.querySelector('.back-to-top');
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // Mise à jour dynamique de l'année du copyright
+    const copyrightYearElement = document.querySelector('.copyright p');
+    if (copyrightYearElement) {
+        const currentYear = new Date().getFullYear();
+        // Remplacer l'année hardcodée par l'année actuelle
+        copyrightYearElement.textContent = copyrightYearElement.textContent.replace(/© \d{4}/, `© ${currentYear}`);
     }
 }); 

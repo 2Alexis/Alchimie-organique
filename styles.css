@@ -260,7 +260,7 @@ nav ul li a.active:after {
 footer {
     background-color: #1a1a1a;
     padding: 4rem 5% 2rem;
-    margin-top: 5rem;
+    margin-top: 0;
 }
 
 .footer-content {
@@ -331,21 +331,11 @@ footer {
 /* Responsive */
 @media screen and (max-width: 768px) {
     header {
-        flex-direction: column;
-        padding: 1rem 5%;
+        padding: 0.8rem 5%;
     }
     
-    nav ul {
-        margin-top: 1rem;
-    }
-    
-    nav ul li {
-        margin-left: 1rem;
-        margin-right: 1rem;
-    }
-    
-    .hero h2 {
-        font-size: 2.5rem;
+    .logo h1 {
+        font-size: 1.4rem;
     }
 }
 
@@ -455,4 +445,110 @@ header.scrolled nav ul li a {
 html {
     scrollbar-width: thin;
     scrollbar-color: #9370db rgba(25, 25, 30, 0.7);
+}
+
+/* Bouton Burger */
+.burger-menu {
+    display: none; /* Caché par défaut sur desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1010; /* Au-dessus du header */
+}
+
+.burger-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--light-color);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+}
+
+/* Styles pour l'état ouvert du burger (animation en croix) */
+.burger-menu.active .burger-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger-menu.active .burger-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active .burger-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Menu mobile */
+.mobile-nav {
+    /* La classe .mobile-nav est appliquée à <nav> dans le HTML */
+}
+
+/* Styles Responsive - Changement du breakpoint */
+@media screen and (max-width: 1023px) { /* !! Point de rupture augmenté à 1022px !! */
+    header {
+        padding: 1rem 5%; 
+    }
+
+    .logo h1 {
+        font-size: 1.5rem; 
+    }
+
+    nav:not(.mobile-nav) { /* Cacher la nav desktop originale si elle n'a pas la classe mobile-nav */
+         display: none; 
+    } 
+
+    /* Styles pour le menu mobile (la <nav> avec classe .mobile-nav) */
+    nav.mobile-nav { 
+        display: none; /* Caché par défaut */
+        /* Le reste des styles pour la position fixe, etc. */
+        position: fixed; /* Position fixe pour couvrir l'écran */
+        top: 0; /* Commence en haut */
+        left: 0;
+        width: 100%;
+        height: 100vh; /* Toute la hauteur */
+        background-color: rgba(30, 30, 30, 0.98); /* Fond sombre semi-transparent */
+        backdrop-filter: blur(5px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 80px; 
+        transform: translateX(100%); 
+        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        z-index: 1005; 
+    }
+
+    nav.mobile-nav.active {
+        display: flex; /* Afficher quand actif */
+        transform: translateX(0); /* Glisse depuis la droite */
+    }
+
+    nav.mobile-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav.mobile-nav ul li {
+        margin: 1.5rem 0;
+    }
+
+    nav.mobile-nav ul li a {
+        font-size: 1.5rem; 
+        color: var(--light-color);
+    }
+    
+    nav.mobile-nav ul li a:after {
+        display: none; 
+    }
+
+    nav.mobile-nav ul li a.active {
+       color: var(--primary-color); 
+       font-weight: bold;
+    }
+
+    /* Afficher le bouton burger */
+    .burger-menu {
+        display: block; 
+    }
 } 
