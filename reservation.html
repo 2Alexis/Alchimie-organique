@@ -512,7 +512,7 @@
     }
 
     /* Style amélioré pour le bouton d'envoi */
-    #send-link-btn {
+    .verification-form #send-link-btn {
         background: linear-gradient(135deg, #9370DB, #a64dff);
         color: white;
         padding: 1rem 2rem;
@@ -530,25 +530,25 @@
         overflow: hidden;
     }
 
-    #send-link-btn:hover {
+    .verification-form #send-link-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba(147, 112, 219, 0.4);
         background: linear-gradient(135deg, #a64dff, #9370DB);
     }
 
-    #send-link-btn:active {
+    .verification-form #send-link-btn:active {
         transform: translateY(-1px);
         box-shadow: 0 3px 10px rgba(147, 112, 219, 0.3);
     }
 
-    #send-link-btn:disabled {
+    .verification-form #send-link-btn:disabled {
         background: #666;
         cursor: not-allowed;
         transform: none;
         box-shadow: none;
     }
 
-    #send-link-btn::before {
+    .verification-form #send-link-btn::before {
         content: '';
         position: absolute;
         top: -50%;
@@ -560,12 +560,12 @@
         transition: opacity 0.3s ease;
     }
 
-    #send-link-btn:hover::before {
+    .verification-form #send-link-btn:hover::before {
         opacity: 1;
     }
 
     /* Animation de chargement pour le bouton */
-    #send-link-btn .fa-spinner {
+    .verification-form #send-link-btn .fa-spinner {
         margin-right: 8px;
         animation: spin 1s linear infinite;
     }
@@ -573,6 +573,11 @@
     @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
+    }
+
+    /* Reset des styles par défaut des boutons */
+    button.action-btn.primary-btn {
+        all: unset;
     }
     </style>
 </body>
