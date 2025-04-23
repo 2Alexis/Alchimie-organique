@@ -174,4 +174,104 @@ document.addEventListener('DOMContentLoaded', function() {
         // Remplacer l'année hardcodée par l'année actuelle
         copyrightYearElement.textContent = copyrightYearElement.textContent.replace(/© \d{4}/, `© ${currentYear}`);
     }
+    
+    // Fonction pour déterminer si on est sur mobile
+    function isMobileDevice() {
+        return window.innerWidth <= 768;
+    }
+    
+    // Initialisation et gestion des descriptions en fonction de la taille d'écran
+    function initializeDescriptions() {
+        // Cibler tous les paragraphes/descriptions qui ont l'attribut data-full-description
+        const descriptions = document.querySelectorAll('[data-full-description]');
+        const toggleButtons = document.querySelectorAll('.toggle-description-btn'); // Utiliser la nouvelle classe
+        
+        // Cache tous les boutons par défaut
+        toggleButtons.forEach(button => button.style.display = 'none');
+        
+        descriptions.forEach(description => {
+            const fullText = description.getAttribute('data-full-description');
+            const toggleBtn = description.parentElement.querySelector('.toggle-description-btn'); // Trouver le bouton associé
+            
+            if (!fullText) return;
+
+            // Version mobile : texte tronqué
+            if (isMobileDevice()) {
+                if (fullText.length > 150) { // Seuil de troncature
+                    description.textContent = fullText.substring(0, 150) + '...';
+                    if (toggleBtn) toggleBtn.style.display = 'inline-block'; // Afficher bouton si texte long
+                    if (toggleBtn) toggleBtn.textContent = 'Voir plus'; // Assurer texte initial
+                    description.classList.remove('expanded'); // Assurer état initial
+                } else {
+                    description.textContent = fullText; // Texte court, pas besoin de bouton
+                    if (toggleBtn) toggleBtn.style.display = 'none';
+                }
+            } 
+            // Version desktop : texte complet
+            else {
+                description.textContent = fullText;
+                if (toggleBtn) toggleBtn.style.display = 'none'; // Cacher bouton sur desktop
+                description.classList.remove('expanded'); // Nettoyer classe si on redimensionne
+            }
+        });
+    }
+    
+    // Gestion des boutons "Voir plus" (uniquement sur mobile)
+    const toggleButtons = document.querySelectorAll('.toggle-description-btn'); // Utiliser la nouvelle classe
+    
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            if (!isMobileDevice()) return; // Ne rien faire sur desktop
+            
+            // Trouver tous les paragraphes à basculer dans le même conteneur parent
+            const parentContainer = this.parentElement;
+            const descriptionsToToggle = parentContainer.querySelectorAll('.description-toggleable[data-full-description]');
+            
+            if (this.textContent === 'Voir plus') {
+                descriptionsToToggle.forEach(desc => {
+                    const fullText = desc.getAttribute('data-full-description');
+                    if (fullText) {
+                        desc.textContent = fullText;
+                        desc.classList.add('expanded');
+                    }
+                });
+                this.textContent = 'Voir moins';
+            } else {
+                descriptionsToToggle.forEach(desc => {
+                    const fullText = desc.getAttribute('data-full-description');
+                    if (fullText && fullText.length > 150) {
+                        desc.textContent = fullText.substring(0, 150) + '...';
+                    }
+                    desc.classList.remove('expanded');
+                });
+                this.textContent = 'Voir plus';
+            }
+        });
+    });
+    
+    // Optimisation de la hauteur des images sur mobile
+    function optimizeImagesForMobile() {
+        const serviceImages = document.querySelectorAll('.service-image');
+        
+        serviceImages.forEach(img => {
+            // Ajuster la hauteur en fonction de la taille de l'écran
+            if (isMobileDevice()) {
+                img.style.minHeight = '200px';
+                img.style.maxHeight = '250px';
+            } else {
+                img.style.minHeight = '';
+                img.style.maxHeight = '';
+            }
+        });
+    }
+    
+    // Initialiser les descriptions et les images
+    initializeDescriptions();
+    optimizeImagesForMobile();
+    
+    // Réinitialiser lors du redimensionnement
+    window.addEventListener('resize', function() {
+        initializeDescriptions();
+        optimizeImagesForMobile();
+    });
 }); 

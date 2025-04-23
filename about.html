@@ -24,6 +24,10 @@
             <span class="burger-bar"></span>
         </button>
         <nav class="mobile-nav">
+            <div class="mobile-nav-header">
+                <img src="assets/images/logo.png" alt="Logo Alchimie Organique">
+                <h2>Alchimie Organique</h2>
+            </div>
             <ul>
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="services.html">Nos Soins</a></li>
@@ -46,8 +50,13 @@
         <div class="container">
             <div class="philosophy-content">
                 <h3>L'Essence de l'Alchimie Organique</h3>
-                <p>L'alchimie organique est bien plus qu'une simple pratique de soins. C'est une philosophie ancestrale qui unit les principes alchimiques traditionnels avec une profonde compréhension des éléments naturels et organiques. Notre approche repose sur la croyance que chaque être humain possède en lui les ressources nécessaires à sa propre transformation et à son épanouissement.</p>
-                <p>Tout comme les alchimistes d'autrefois cherchaient à transformer le plomb en or, nous accompagnons chaque personne dans sa propre transmutation intérieure, permettant l'émergence d'un état d'être plus élevé, plus harmonieux et plus aligné avec sa véritable nature.</p>
+                <p class="description-toggleable" data-full-description="L'alchimie organique est bien plus qu'une simple pratique de soins. C'est une philosophie ancestrale qui unit les principes alchimiques traditionnels avec une profonde compréhension des éléments naturels et organiques. Notre approche repose sur la croyance que chaque être humain possède en lui les ressources nécessaires à sa propre transformation et à son épanouissement.">
+                    L'alchimie organique est bien plus qu'une simple pratique de soins. C'est une philosophie ancestrale qui unit les principes alchimiques traditionnels...
+                </p>
+                <p class="description-toggleable" data-full-description="Tout comme les alchimistes d'autrefois cherchaient à transformer le plomb en or, nous accompagnons chaque personne dans sa propre transmutation intérieure, permettant l'émergence d'un état d'être plus élevé, plus harmonieux et plus aligné avec sa véritable nature.">
+                    Tout comme les alchimistes d'autrefois cherchaient à transformer le plomb en or, nous accompagnons chaque personne dans sa propre transmutation intérieure...
+                </p>
+                <span class="toggle-description-btn" style="display: none;">Voir plus</span>
             </div>
             <div class="philosophy-image">
                 <img src="assets/images/alchimie-ailes.png" alt="Philosophie de l'Alchimie Organique">
@@ -168,7 +177,7 @@
     <section class="cta">
         <h2>Prêt à Commencer Votre Voyage Intérieur ?</h2>
         <p>Offrez-vous un moment de reconnexion et de transformation</p>
-        <a href="reservation.html" class="btn">Réserver Maintenant</a>
+        <a href="reservation.html" class="btn">Réserver Votre Séance</a>
     </section>
 
     <footer>
@@ -376,17 +385,91 @@
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     }
     
+    /* Améliorations pour mobile */
     @media screen and (max-width: 768px) {
+        .founder {
+            padding: 3rem 1rem;
+        }
+        
+        .founder .container {
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 0 0.5rem;
+        }
+        
+        .founder-image {
+            max-width: 100%;
+            max-height: 450px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
         .founder-content {
             padding: 1.5rem;
+            border-left: none;
+            border-top: 4px solid var(--primary-color);
+            text-align: left;
+            width: 100%;
         }
         
         .founder-content h3 {
             font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+            text-align: center;
+        }
+        
+        .founder-name {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            text-align: center;
         }
         
         .founder-content h4 {
             font-size: 1.3rem;
+            margin: 1.5rem 0 0.8rem;
+        }
+        
+        .founder-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+        
+        .founder-content ul {
+            padding-left: 0.5rem;
+        }
+        
+        .founder-content li {
+            padding-left: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+        
+        .founder-quote {
+            font-size: 1.1rem;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* Ajustements pour autres sections */
+        .page-banner {
+            min-height: 250px;
+        }
+        
+        .philosophy, .principles, .journey, .testimonials-extended {
+            padding: 3rem 1rem;
+        }
+        
+        .philosophy .container {
+            padding: 0;
+        }
+        
+        .philosophy-content, .principle-card, .journey-step, .testimonial-card {
+            padding: 1.5rem;
+        }
+        
+        .principles-grid {
+            gap: 1.5rem;
         }
     }
     </style>

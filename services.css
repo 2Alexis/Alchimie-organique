@@ -178,6 +178,79 @@
     color: var(--text-color);
 }
 
+/* Styles pour les listes de bienfaits selon le device */
+/* Par défaut, on montre la liste détaillée (desktop) et on cache la liste mobile */
+.desktop-benefits {
+    display: block;
+}
+
+.desktop-benefits ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+}
+
+.mobile-benefits {
+    display: none;
+}
+
+/* Styles spécifiques pour desktop (au-dessus de 768px) */
+@media screen and (min-width: 769px) {
+    .service-card {
+        min-height: 450px;
+    }
+    
+    .service-image {
+        min-height: 350px;
+    }
+    
+    .service-content {
+        padding: 2.5rem;
+    }
+    
+    .service-content h3 {
+        font-size: 1.8rem;
+    }
+    
+    .service-description {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+    
+    /* Sur desktop, on affiche toujours le texte complet */
+    .service-description.expanded,
+    .service-description {
+        display: block;
+        overflow: visible;
+        -webkit-line-clamp: none;
+    }
+    
+    /* Cache les boutons "Voir plus" sur desktop */
+    .toggle-description {
+        display: none;
+    }
+    
+    /* Styles pour la note sur desktop */
+    .service-note {
+        font-size: 0.9rem;
+        font-style: italic;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Sur desktop, on affiche toujours la liste détaillée et on cache la liste simplifiée */
+    .desktop-benefits {
+        display: block;
+    }
+    
+    .mobile-benefits {
+        display: none;
+    }
+}
+
+.service-note {
+    color: var(--text-color);
+}
+
 .service-benefits {
     background-color: rgba(147, 112, 219, 0.1);
     padding: 1.5rem;
@@ -297,7 +370,7 @@
     font-weight: bold;
 }
 
-* CTA section */
+/* CTA section */
 .cta {
     position: relative;
     padding: 6rem 0;
@@ -356,15 +429,14 @@
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
-
-/* Responsive */
+/* Styles pour mobile améliorés */
 @media screen and (max-width: 768px) {
     .banner-content h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
     
     .banner-content p {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
     .service-card, .service-card.reverse {
@@ -372,12 +444,62 @@
     }
     
     .service-image {
-        min-height: 250px;
-        max-height: 400px;
+        min-height: 200px;
+        max-height: 250px;
     }
     
-    .service-image img {
-        max-height: 380px;
+    .service-content {
+        padding: 1.5rem;
+    }
+    
+    .service-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .service-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        /* Limiter le texte sur mobile */
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .service-description.expanded {
+        -webkit-line-clamp: unset;
+    }
+    
+    .read-more-btn {
+        display: inline-block;
+        color: var(--primary-color);
+        font-weight: 500;
+        margin-top: -0.5rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+    }
+    
+    .service-benefits {
+        padding: 1rem;
+    }
+    
+    .service-benefits h4 {
+        font-size: 1.1rem;
+    }
+    
+    .service-benefits ul {
+        padding-left: 1.2rem;
+    }
+    
+    .service-benefits ul li {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .package-card {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
     }
     
     .package-card.featured {
@@ -386,5 +508,75 @@
     
     .package-card.featured:hover {
         transform: translateY(-10px);
+    }
+    
+    .package-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .package-price {
+        font-size: 1.8rem;
+    }
+    
+    .package-description {
+        font-size: 0.95rem;
+    }
+    
+    .package-includes li {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .cta {
+        padding: 4rem 1rem;
+        background-attachment: scroll; /* Pour éviter des problèmes sur mobile */
+    }
+    
+    .cta h2 {
+        font-size: 1.8rem;
+    }
+    
+    .cta p {
+        font-size: 1rem;
+    }
+    
+    /* Afficher les boutons "Voir plus" pour les descriptions longues */
+    .toggle-description {
+        display: block;
+        text-align: center;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    
+    /* Rendre la mise en page verticale plus compacte */
+    .services-intro {
+        padding: 3rem 5%;
+    }
+    
+    .intro-content h3 {
+        font-size: 1.7rem;
+    }
+    
+    .intro-content p {
+        font-size: 0.95rem;
+    }
+    
+    /* Amélioration des boutons sur mobile */
+    .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 0;
+    }
+    
+    /* Sur mobile, on affiche la liste simplifiée et on cache la liste détaillée */
+    .desktop-benefits {
+        display: none;
+    }
+    
+    .mobile-benefits {
+        display: block;
     }
 } 

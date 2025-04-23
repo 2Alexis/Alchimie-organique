@@ -424,7 +424,36 @@
     
     .philosophy-content,
     .founder-content {
+        text-align: left;
+    }
+    
+    .philosophy-content {
+        padding: 1.5rem;
+    }
+    
+    .philosophy-content h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
         text-align: center;
+    }
+    
+    .philosophy-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .philosophy-image {
+        max-width: 100%;
+        margin: 0 auto 1.5rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .philosophy {
+        padding: 3rem 1rem;
+    }
+    
+    .philosophy .container {
+        gap: 1rem;
     }
     
     .founder-quote {
@@ -434,5 +463,73 @@
     .journey-step {
         flex: 1 1 100%;
         max-width: 100%;
+    }
+    
+    /* Ajustements pour les principes */
+    .principles h3 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .principle-card {
+        padding: 1.5rem;
+    }
+    
+    .principle-card h4 {
+        font-size: 1.2rem;
+    }
+    
+    .principle-card p {
+        font-size: 0.95rem;
+    }
+    
+    /* Ajustements pour les témoignages */
+    .testimonials-extended h3 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+    
+    .testimonial-card p {
+        font-size: 0.95rem;
+    }
+    
+    /* Ajustements pour le CTA */
+    .cta {
+        padding: 4rem 1rem;
+    }
+    
+    .cta h2 {
+        font-size: 1.8rem;
+    }
+    
+    .cta p {
+        font-size: 1rem;
+    }
+    
+    .cta .btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+    
+    /* Style pour le bouton "Voir plus" */
+    .toggle-description-btn {
+        display: inline-block; /* Sera affiché par JS si nécessaire */
+        color: var(--primary-color);
+        font-weight: 500;
+        margin-top: 0.5rem;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+
+/* Cacher le bouton sur desktop par défaut */
+@media screen and (min-width: 769px) {
+    .toggle-description-btn {
+        display: none !important; /* Assurer qu'il est caché */
     }
 } 

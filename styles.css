@@ -482,11 +482,25 @@ html {
 
 /* Menu mobile */
 .mobile-nav {
-    /* La classe .mobile-nav est appliquée à <nav> dans le HTML */
+    display: none; /* Caché par défaut */
+    position: fixed; /* Position fixe pour couvrir l'écran */
+    top: 0; /* Commence en haut */
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Toute la hauteur */
+    background-color: rgba(30, 30, 30, 0.98); /* Fond sombre semi-transparent */
+    backdrop-filter: blur(5px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Pour commencer en haut */
+    padding-top: 20px; /* Réduit pour donner plus d'espace à l'en-tête */
+    transform: translateX(100%); 
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1005;
 }
 
 /* Styles Responsive - Changement du breakpoint */
-@media screen and (max-width: 1023px) { /* !! Point de rupture augmenté à 1022px !! */
+@media screen and (max-width: 1025px) { /* !! Point de rupture augmenté à 1022px !! */
     header {
         padding: 1rem 5%; 
     }
@@ -512,8 +526,8 @@ html {
         backdrop-filter: blur(5px);
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        padding-top: 80px; 
+        justify-content: flex-start; /* Aligner en haut pour l'en-tête */
+        padding-top: 20px; 
         transform: translateX(100%); 
         transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
         z-index: 1005; 
@@ -527,6 +541,7 @@ html {
     nav.mobile-nav ul {
         flex-direction: column;
         text-align: center;
+        margin-top: 30px; /* Ajouter espace après l'en-tête */
     }
 
     nav.mobile-nav ul li {
@@ -551,4 +566,36 @@ html {
     .burger-menu {
         display: block; 
     }
+} 
+
+.mobile-nav.active {
+    transform: translateX(0); /* Afficher le menu */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour le logo dans le menu mobile */
+.mobile-nav-header {
+    display: flex; /* Toujours utilisé flex, mais caché par son parent */
+    align-items: center;
+    justify-content: center; /* Centrer horizontalement */
+    width: 100%;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.mobile-nav-header img {
+    width: 60px; /* Un peu plus grand */
+    height: 60px;
+    margin-right: 15px;
+    border-radius: 50%;
+    object-fit: cover; /* S'assurer que l'image est bien ajustée */
+}
+
+.mobile-nav-header h2 {
+    color: var(--primary-color);
+    font-size: 28px; /* Un peu plus grand */
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600; /* Légèrement plus épais */
 } 

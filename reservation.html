@@ -51,6 +51,10 @@
             <span class="burger-bar"></span>
         </button>
         <nav class="mobile-nav">
+            <div class="mobile-nav-header">
+                <img src="assets/images/logo.png" alt="Logo Alchimie Organique">
+                <h2>Alchimie Organique</h2>
+            </div>
             <ul>
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="services.html">Nos Soins</a></li>
@@ -279,6 +283,9 @@
             });
         });
     </script>
+    
+    <!-- Ajout du script général (qui contient la logique du menu burger) -->
+    <script src="scripts.js"></script>
 
     <style>
     /* Styles pour le formulaire de vérification par email */
@@ -578,6 +585,67 @@
     /* Reset des styles par défaut des boutons */
     button.action-btn.primary-btn {
         all: unset;
+        cursor: pointer;
+    }
+    
+    /* Styles responsives pour mobile */
+    @media screen and (max-width: 768px) {
+        .verification-form {
+            padding: 1.5rem;
+        }
+        
+        .verification-form h3 {
+            font-size: 1.5rem;
+        }
+        
+        .verification-form p {
+            font-size: 0.9rem;
+        }
+        
+        .verification-form #send-link-btn {
+            max-width: none;
+            width: 100%;
+            padding: 0.7rem 0.5rem;
+            white-space: normal;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+            height: auto;
+            min-height: 3rem;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        #email-input {
+            font-size: 0.9rem;
+            padding: 0.7rem;
+        }
+        
+        .form-group label {
+            font-size: 0.9rem;
+        }
+    }
+    
+    /* Styles pour très petits écrans */
+    @media screen and (max-width: 400px) {
+        .verification-form {
+            padding: 1.2rem;
+        }
+        
+        .verification-form h3 {
+            font-size: 1.3rem;
+        }
+        
+        .verification-form #send-link-btn {
+            font-size: 0.9rem;
+            padding: 0.6rem 0.4rem;
+        }
+        
+        #email-sent-message p {
+            font-size: 0.85rem;
+        }
     }
     </style>
 </body>
